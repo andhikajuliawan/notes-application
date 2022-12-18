@@ -4,11 +4,11 @@
     "slug": "notes-application",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/icontodo.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/splash-todo.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#0185B7"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
