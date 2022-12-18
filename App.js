@@ -11,6 +11,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { NativeBaseProvider } from "native-base";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
+
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -24,6 +25,7 @@ function Navigation() {
             component={BottomNavigation}
             options={{ headerShown: false }}
           />
+
           <Stack.Screen name="EditScreen" component={EditScreen} />
         </Stack.Navigator>
       </NavigationContainer>
@@ -34,10 +36,12 @@ export default Navigation;
 
 export function BottomNavigation() {
   return (
+
     <Tab.Navigator
       screenOptions={() => ({
         tabBarActiveTintColor: "#031747",
         tabBarInactiveTintColor: "#0185B7",
+
         tabBarStyle: { height: 65 },
         tabBarIconStyle: { marginTop: 10 },
         tabBarLabelStyle: {
@@ -47,6 +51,7 @@ export function BottomNavigation() {
         headerShown: false,
       })}
     >
+
       <Tab.Screen
         name="Home"
         component={HomeScreen}
@@ -84,6 +89,7 @@ export function BottomNavigation() {
             );
           },
         }}
+
       />
     </Tab.Navigator>
   );

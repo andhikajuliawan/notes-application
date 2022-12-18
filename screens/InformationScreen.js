@@ -1,6 +1,8 @@
 import { Text, View, Box, Center } from "native-base";
 import React, { Component } from "react";
+
 import Ionicons from "@expo/vector-icons/Ionicons";
+
 
 class InformationScreen extends Component {
   constructor(props) {
@@ -9,6 +11,7 @@ class InformationScreen extends Component {
   state = {};
   render() {
     return (
+
       <View flex={1} backgroundColor={"#CEDEE5"}>
         <Box bg="#CEDEE5" paddingX={15} paddingY={2} height={10}></Box>
         <Center>
@@ -42,6 +45,7 @@ class InformationScreen extends Component {
                 (harian, mingguan atau bulanan). Dengan aplikasi ini diharapkan
                 pengguna dapat mengelola atau memenejemen waktu.
               </Text>
+
             </Box>
             <Center mt={10}>
               <Text>Version 1.0.0</Text>

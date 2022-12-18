@@ -1,3 +1,4 @@
+
 import {
   Box,
   Button,
@@ -11,11 +12,13 @@ import {
   View,
   StatusBar,
 } from "native-base";
+
 import React, { Component } from "react";
 
 class AddScreen extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       categories: [],
       statuses: [],
@@ -174,6 +177,7 @@ class AddScreen extends Component {
           </Box>
         </ScrollView>
       </>
+
     );
   }
 }

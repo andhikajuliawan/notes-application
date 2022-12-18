@@ -1,3 +1,4 @@
+
 import {
   View,
   Text,
@@ -15,10 +16,12 @@ import { TouchableOpacity } from "react-native";
 import React, { Component } from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
+
 class HomeScreen extends Component {
   constructor(props) {
     super(props);
   }
+
   state = {
     isContentLoading: true,
     isCategoriesLoading: true,
@@ -42,7 +45,9 @@ class HomeScreen extends Component {
   };
 
   fetchCategories = () => {
+
     fetch("https://pab-ittelkomsby.000webhostapp.com/categories")
+
       .then((response) => response.json())
       .then((json) =>
         this.setState({
@@ -61,15 +66,19 @@ class HomeScreen extends Component {
 
   fetchDelete = (key) => {
     fetch(`https://pab-ittelkomsby.000webhostapp.com/delete/${key}`, {
+
       method: "POST",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
+
       },
     })
       .then(console.log("data berhasil dihapus"))
       .then(() => this.fetchContent(this.state.activeCategory))
+
       .catch((error) => console.error(error));
+
   };
 
   componentDidMount = () => {
@@ -80,6 +89,7 @@ class HomeScreen extends Component {
     const { navigation } = this.props;
     return (
       <Box px="20px" mb={5}>
+
         <Box overflow={"hidden"} rounded={"lg"}>
           <Box p={4} bg={"white"}>
             <HStack width={"100%"} alignItems="center" justifyContent="center">
@@ -110,10 +120,12 @@ class HomeScreen extends Component {
                       <Text fontSize={13} color={"#FFFFFF"}>
                         {item.status.status}
                       </Text>
+
                     </Box>
                   </HStack>
                 </VStack>
               </Box>
+
               <Box width={"15%"}>
                 <TouchableOpacity
                   onPress={() =>
@@ -132,6 +144,7 @@ class HomeScreen extends Component {
               <Box width={"15%"}>
                 <TouchableOpacity onPress={() => this.fetchDelete(item.id)}>
                   <Ionicons name="ios-trash" color={"#FD0000"} size={25} />
+
                 </TouchableOpacity>
               </Box>
             </HStack>
@@ -158,6 +171,7 @@ class HomeScreen extends Component {
   };
 
   render() {
+
     const {
       isContentLoading,
       isCategoriesLoading,
@@ -233,8 +247,11 @@ class HomeScreen extends Component {
             )}
           </>
         </View>
+
       </>
     );
   }
 }
+
+
 export default HomeScreen;
