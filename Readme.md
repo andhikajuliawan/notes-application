@@ -1,6 +1,5 @@
 How to start
 
-first 
 ```sh
 npm install
 ```
