@@ -1,9 +1,12 @@
-# NativeBase Expo Template
+How to start
 
-The official NativeBase template for [Expo](https://docs.expo.io/)
-
-## Usage
-
+first 
 ```sh
-expo init my-app --template @native-base/expo-template
+npm install
+```
+```sh
+npm start
+```
+```sh
+npm run android
 ```
