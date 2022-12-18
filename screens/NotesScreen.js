@@ -60,12 +60,6 @@ class Notes extends Component {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        title: "percobaan react native baru 1",
-        content: "percobaan react native",
-        status: "2",
-        category: "2",
-      }),
     })
       .then(() => console.log("data berhasil dihapus"))
       .catch((err) => console.log(err));

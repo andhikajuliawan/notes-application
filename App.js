@@ -6,10 +6,10 @@ import {
   EditScreen,
   HomeScreen,
   InformationScreen,
-  NotesScreen,
 } from "./screens";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NativeBaseProvider } from "native-base";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -18,8 +18,12 @@ function Navigation() {
   return (
     <NativeBaseProvider>
       <NavigationContainer>
-        <Stack.Navigator options={{ headerShown: false }}>
-          <Stack.Screen name="Home" component={BottomNavigation} />
+        <Stack.Navigator>
+          <Stack.Screen
+            name="HomeScreen"
+            component={BottomNavigation}
+            options={{ headerShown: false }}
+          />
           <Stack.Screen name="EditScreen" component={EditScreen} />
         </Stack.Navigator>
       </NavigationContainer>
@@ -30,10 +34,57 @@ export default Navigation;
 
 export function BottomNavigation() {
   return (
-    <Tab.Navigator screenOptions={{ headerShown: false }}>
-      <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Add List" component={AddScreen} />
-      <Tab.Screen name="Information" component={InformationScreen} />
+    <Tab.Navigator
+      screenOptions={() => ({
+        tabBarActiveTintColor: "#031747",
+        tabBarInactiveTintColor: "#0185B7",
+        tabBarStyle: { height: 65 },
+        tabBarIconStyle: { marginTop: 10 },
+        tabBarLabelStyle: {
+          fontSize: 12,
+          marginBottom: 10,
+        },
+        headerShown: false,
+      })}
+    >
+      <Tab.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{
+          tabBarLabel: "Home",
+          tabBarIcon: ({ color, size }) => {
+            return <Ionicons name="ios-home" size={size} color={color} />;
+          },
+        }}
+      />
+      <Tab.Screen
+        name="Add List"
+        component={AddScreen}
+        options={{
+          tabBarLabel: "Add List",
+          tabBarIcon: ({ color, size }) => {
+            return (
+              <Ionicons name="ios-add-outline" size={size} color={color} />
+            );
+          },
+        }}
+      />
+      <Tab.Screen
+        name="Information"
+        component={InformationScreen}
+        options={{
+          tabBarLabel: "Information",
+          tabBarIcon: ({ color, size }) => {
+            return (
+              <Ionicons
+                name="ios-information-circle-outline"
+                size={size}
+                color={color}
+              />
+            );
+          },
+        }}
+      />
     </Tab.Navigator>
   );
 }
