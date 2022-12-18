@@ -73,18 +73,12 @@ class Notes extends Component {
 
   render() {
     return (
-      <NativeBaseProvider>
-        <Center flex={1}>
-          <Button onPress={() => this.getDataNotes()}>tes get data</Button>
-          <Button onPress={() => this.createDataNotes()}>
-            tes create data
-          </Button>
-          <Button onPress={() => this.editDataNotes()}>tes edit data</Button>
-          <Button onPress={() => this.deleteDataNotes()}>
-            tes delete data
-          </Button>
-        </Center>
-      </NativeBaseProvider>
+      <Center flex={1}>
+        <Button onPress={() => this.getDataNotes()}>tes get data</Button>
+        <Button onPress={() => this.createDataNotes()}>tes create data</Button>
+        <Button onPress={() => this.editDataNotes()}>tes edit data</Button>
+        <Button onPress={() => this.deleteDataNotes()}>tes delete data</Button>
+      </Center>
     );
   }
 }
