@@ -43,6 +43,13 @@ class AddScreen extends Component {
   };
 
   createDataNotes = () => {
+    const {inputTitle, inputContent, inputCategory} = this.state;
+    // cegah agar data yang di input tidak kosong
+    if (inputTitle === "" || inputContent === "" || inputCategory === "") {
+      console.log("Isi judul dan content serta kategori");
+      return;
+    }
+
     fetch("https://pab-ittelkomsby.000webhostapp.com/create", {
       method: "POST",
       headers: {
@@ -165,14 +172,26 @@ class AddScreen extends Component {
             </Select>
 
             <View>
-              <Button
+              {/* Menggunakan pressable agar dapat menerapkan custom bgColor dan masih dapat feedback
+                  kalau pakai button di set bgColor maka tidak dapat feeback saat button ditekan
+               */}
+              <Pressable
                 onPress={() => this.createDataNotes()}
-                bgColor="#0185B7"
-                borderRadius="full"
                 mt={10}
               >
-                Submit
-              </Button>
+                {({isPressed}) => {
+                  return (
+                    <Box 
+                      bg={isPressed? "#016a91":"#0185B7"} 
+                      px={3}
+                      py={3}
+                      borderRadius="full"
+                      >
+                      <Text color="white" textAlign="center">Submit</Text>
+                    </Box>
+                  )
+                }}
+              </Pressable>
             </View>
           </Box>
         </ScrollView>

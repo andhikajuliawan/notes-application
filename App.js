@@ -49,6 +49,7 @@ export function BottomNavigation() {
           marginBottom: 10,
         },
         headerShown: false,
+        unmountOnBlur: true // menambahkan option ini  agar tidap masuk ke screen lain akan refresh halaman
       })}
     >
 
