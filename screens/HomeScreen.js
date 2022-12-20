@@ -33,7 +33,7 @@ class HomeScreen extends Component {
   fetchContent = (key) => {
     fetch(`https://pab-ittelkomsby.000webhostapp.com/categories/${key}`)
       .then((response) => response.json())
-      .then((json) => this.setState({ content: json.Category }))
+      .then((json) => this.setState({ content: json.notes }))
       .catch((error) => console.error(error))
       .finally(() =>
         this.setState({
