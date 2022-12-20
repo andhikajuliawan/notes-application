@@ -1,4 +1,3 @@
-
 import {
   View,
   Text,
@@ -15,7 +14,7 @@ import {
 import { TouchableOpacity } from "react-native";
 import React, { Component } from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
-
+import HeaderComponent from "../components";
 
 class HomeScreen extends Component {
   constructor(props) {
@@ -45,9 +44,7 @@ class HomeScreen extends Component {
   };
 
   fetchCategories = () => {
-
     fetch("https://pab-ittelkomsby.000webhostapp.com/categories")
-
       .then((response) => response.json())
       .then((json) =>
         this.setState({
@@ -66,19 +63,16 @@ class HomeScreen extends Component {
 
   fetchDelete = (key) => {
     fetch(`https://pab-ittelkomsby.000webhostapp.com/delete/${key}`, {
-
       method: "POST",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-
       },
     })
       .then(console.log("data berhasil dihapus"))
       .then(() => this.fetchContent(this.state.activeCategory))
 
       .catch((error) => console.error(error));
-
   };
 
   componentDidMount = () => {
@@ -89,7 +83,6 @@ class HomeScreen extends Component {
     const { navigation } = this.props;
     return (
       <Box px="20px" mb={5}>
-
         <Box overflow={"hidden"} rounded={"lg"}>
           <Box p={4} bg={"white"}>
             <HStack width={"100%"} alignItems="center" justifyContent="center">
@@ -120,7 +113,6 @@ class HomeScreen extends Component {
                       <Text fontSize={13} color={"#FFFFFF"}>
                         {item.status.status}
                       </Text>
-
                     </Box>
                   </HStack>
                 </VStack>
@@ -144,7 +136,6 @@ class HomeScreen extends Component {
               <Box width={"15%"}>
                 <TouchableOpacity onPress={() => this.fetchDelete(item.id)}>
                   <Ionicons name="ios-trash" color={"#FD0000"} size={25} />
-
                 </TouchableOpacity>
               </Box>
             </HStack>
@@ -171,7 +162,6 @@ class HomeScreen extends Component {
   };
 
   render() {
-
     const {
       isContentLoading,
       isCategoriesLoading,
@@ -181,77 +171,71 @@ class HomeScreen extends Component {
       activeCategory,
     } = this.state;
     return (
-      <>
-        <StatusBar backgroundColor="#CEDEE5" barStyle="dark-content" />
-        <View flex={1} backgroundColor={"#CEDEE5"}>
-          <>
-            {!isCategoriesLoading && (
-              <Box>
-                <ScrollView
-                  alignSelf="flex-start"
-                  horizontal={true}
-                  showHorizontalScrollIndicator={false}
-                  my={4}
-                >
-                  <HStack>
-                    {categories.map((category, index) => (
-                      <TouchableOpacity
-                        key={index}
-                        onPress={() => this.categoryOnPress(category.id)}
+      <View flex={1} backgroundColor={"#CEDEE5"}>
+        <HeaderComponent title="Home" buttonBack={false} />
+        <>
+          {!isCategoriesLoading && (
+            <Box>
+              <ScrollView
+                alignSelf="flex-start"
+                horizontal={true}
+                showHorizontalScrollIndicator={false}
+                my={4}
+              >
+                <HStack>
+                  {categories.map((category, index) => (
+                    <TouchableOpacity
+                      key={index}
+                      onPress={() => this.categoryOnPress(category.id)}
+                    >
+                      <Box
+                        bg={
+                          category.id == activeCategory ? "#0185B7" : "#FFFFFF"
+                        }
+                        px={5}
+                        py={2}
+                        rounded="full"
+                        ml={index == 0 ? 5 : 0}
+                        mr={index != categories.length - 1 ? 3 : 5}
+                        mb={2}
                       >
-                        <Box
-                          bg={
+                        <Text
+                          fontWeight="bold"
+                          color={
                             category.id == activeCategory
-                              ? "#0185B7"
-                              : "#FFFFFF"
+                              ? "#FFFFFF"
+                              : "#65727B"
                           }
-                          px={5}
-                          py={2}
-                          rounded="full"
-                          ml={index == 0 ? 5 : 0}
-                          mr={index != categories.length - 1 ? 3 : 5}
-                          mb={2}
                         >
-                          <Text
-                            fontWeight="bold"
-                            color={
-                              category.id == activeCategory
-                                ? "#FFFFFF"
-                                : "#65727B"
-                            }
-                          >
-                            {category.category}
-                          </Text>
-                        </Box>
-                      </TouchableOpacity>
-                    ))}
-                  </HStack>
-                </ScrollView>
-              </Box>
-            )}
+                          {category.category}
+                        </Text>
+                      </Box>
+                    </TouchableOpacity>
+                  ))}
+                </HStack>
+              </ScrollView>
+            </Box>
+          )}
 
-            {isContentLoading ? (
-              <Center flex={1}>
-                <Spinner size="lg" color="#ff7800" />
-              </Center>
-            ) : (
-              <>
-                <FlatList
-                  data={content}
-                  keyExtractor={(item) => item.key}
-                  renderItem={this.renderItem}
-                  onRefresh={this.onRefresh}
-                  refreshing={isFetching}
-                />
-              </>
-            )}
-          </>
-        </View>
-
-      </>
+          {isContentLoading ? (
+            <Center flex={1}>
+              <Spinner size="lg" color="#ff7800" />
+            </Center>
+          ) : (
+            <>
+              <FlatList
+                data={content}
+                keyExtractor={(item) => item.id}
+                renderItem={this.renderItem}
+                onRefresh={this.onRefresh}
+                refreshing={isFetching}
+              />
+            </>
+          )}
+        </>
+      </View>
     );
   }
 }
-
 
 export default HomeScreen;

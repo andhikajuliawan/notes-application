@@ -1,4 +1,3 @@
-
 import {
   Box,
   Button,
@@ -11,9 +10,11 @@ import {
   TextArea,
   View,
   StatusBar,
+  Pressable,
 } from "native-base";
 
 import React, { Component } from "react";
+import HeaderComponent from "../components";
 
 class AddScreen extends Component {
   constructor(props) {
@@ -43,7 +44,7 @@ class AddScreen extends Component {
   };
 
   createDataNotes = () => {
-    const {inputTitle, inputContent, inputCategory} = this.state;
+    const { inputTitle, inputContent, inputCategory } = this.state;
     // cegah agar data yang di input tidak kosong
     if (inputTitle === "" || inputContent === "" || inputCategory === "") {
       console.log("Isi judul dan content serta kategori");
@@ -76,15 +77,8 @@ class AddScreen extends Component {
   render() {
     return (
       <>
-        <StatusBar backgroundColor="#fff" barStyle="dark-content" />
-
+        <HeaderComponent title="Add List" buttonBack={false} />
         <ScrollView bgColor="#CEDEE5">
-          <Center width="100%" py={3} bgColor="#fff">
-            <Text alignItems="center" fontWeight="bold" fontSize="lg">
-              New Notes
-            </Text>
-          </Center>
-
           <Box
             bgColor="#fff"
             width="95%"
@@ -175,28 +169,26 @@ class AddScreen extends Component {
               {/* Menggunakan pressable agar dapat menerapkan custom bgColor dan masih dapat feedback
                   kalau pakai button di set bgColor maka tidak dapat feeback saat button ditekan
                */}
-              <Pressable
-                onPress={() => this.createDataNotes()}
-                mt={10}
-              >
-                {({isPressed}) => {
+              <Pressable onPress={() => this.createDataNotes()} mt={10}>
+                {({ isPressed }) => {
                   return (
-                    <Box 
-                      bg={isPressed? "#016a91":"#0185B7"} 
+                    <Box
+                      bg={isPressed ? "#016a91" : "#0185B7"}
                       px={3}
                       py={3}
                       borderRadius="full"
-                      >
-                      <Text color="white" textAlign="center">Submit</Text>
+                    >
+                      <Text color="white" textAlign="center">
+                        Submit
+                      </Text>
                     </Box>
-                  )
+                  );
                 }}
               </Pressable>
             </View>
           </Box>
         </ScrollView>
       </>
-
     );
   }
 }

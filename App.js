@@ -8,9 +8,8 @@ import {
   InformationScreen,
 } from "./screens";
 import { createStackNavigator } from "@react-navigation/stack";
-import { NativeBaseProvider } from "native-base";
+import { NativeBaseProvider, StatusBar } from "native-base";
 import Ionicons from "@expo/vector-icons/Ionicons";
-
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -18,6 +17,7 @@ const Tab = createBottomTabNavigator();
 function Navigation() {
   return (
     <NativeBaseProvider>
+      <StatusBar />
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen
@@ -36,7 +36,6 @@ export default Navigation;
 
 export function BottomNavigation() {
   return (
-
     <Tab.Navigator
       screenOptions={() => ({
         tabBarActiveTintColor: "#031747",
@@ -49,10 +48,9 @@ export function BottomNavigation() {
           marginBottom: 10,
         },
         headerShown: false,
-        unmountOnBlur: true // menambahkan option ini  agar tidap masuk ke screen lain akan refresh halaman
+        unmountOnBlur: true, // menambahkan option ini  agar tidap masuk ke screen lain akan refresh halaman
       })}
     >
-
       <Tab.Screen
         name="Home"
         component={HomeScreen}
@@ -90,7 +88,6 @@ export function BottomNavigation() {
             );
           },
         }}
-
       />
     </Tab.Navigator>
   );

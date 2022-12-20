@@ -1,4 +1,3 @@
-
 import React, { Component } from "react";
 import {
   Box,
@@ -13,7 +12,6 @@ import {
   View,
   StatusBar,
 } from "native-base";
-
 
 class EditScreen extends Component {
   constructor(props) {
@@ -64,20 +62,22 @@ class EditScreen extends Component {
     this.props.navigation.pop();
   };
 
-  componentDidMount = () => {
-    this.getDataCategories();
-    this.getDataStatuses();
+  getDataFromHomeScreen = () => {
     this.setState({ inputTitle: this.props.route.params.title });
     this.setState({ inputContent: this.props.route.params.content });
     this.setState({ inputStatus: this.props.route.params.status });
     this.setState({ inputCategory: this.props.route.params.category });
   };
 
+  componentDidMount = () => {
+    this.getDataCategories();
+    this.getDataStatuses();
+    this.getDataFromHomeScreen();
+  };
+
   render() {
     return (
       <>
-        <StatusBar backgroundColor="#fff" barStyle="dark-content" />
-
         <ScrollView bgColor="#CEDEE5">
           <Box
             bgColor="#fff"
@@ -178,7 +178,6 @@ class EditScreen extends Component {
           </Box>
         </ScrollView>
       </>
-
     );
   }
 }
